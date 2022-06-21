@@ -9,16 +9,19 @@ const express = require('express');
 const router  = express.Router();
 
 const {getAllProducts} = require('../db/queries/products/01-getAllProducts');
+const {getSizes} = require('../db/queries/products/02-getSizes');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
 
     const f1 = getAllProducts(db);
+    const f2 = getSizes(db);
 
-    Promise.all([f1])
-    .then(([r1]) => {
+    Promise.all([f1, f2])
+    .then(([r1, r2]) => {
       const products = r1.rows;
-      res.json({ products });
+      const sizes = r2.rows;
+      res.json({ products, sizes });
       return;
     })
     .catch(err => {

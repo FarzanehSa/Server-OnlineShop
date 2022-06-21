@@ -12,4 +12,16 @@ INSERT INTO products
     'description',
     'https://cdn.shopify.com/s/files/1/0046/5069/6817/products/MarbleWhite-3_4SideView-WhiteBG-WithShadowcopy_bb995a77-486a-4ed5-8085-db15cc574e38_800x.jpg?v=1620419553',
     16500 );
+INSERT INTO products
+  (id, category_id, style_id, color_id, size_id, name, description, image_url, price)
+   VALUES (3, 2, 1, 1, 10, 'MARBLE WHITE',
+    'description',
+    'https://cdn.shopify.com/s/files/1/0046/5069/6817/products/MarbleWhite-3_4SideView-WhiteBG-WithShadowcopy_bb995a77-486a-4ed5-8085-db15cc574e38_800x.jpg?v=1620419553',
+    2000 );
+INSERT INTO products
+  (id, category_id, style_id, color_id, size_id, name, description, image_url, price)
+   VALUES (4, 2, 1, 1, 10, 'MARBLE WHITE',
+    'description',
+    'https://cdn.shopify.com/s/files/1/0046/5069/6817/products/MarbleWhite-3_4SideView-WhiteBG-WithShadowcopy_bb995a77-486a-4ed5-8085-db15cc574e38_800x.jpg?v=1620419553',
+    4000 );
 
