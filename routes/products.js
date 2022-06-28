@@ -9,20 +9,35 @@ const express = require('express');
 const router  = express.Router();
 
 const {getAllProducts} = require('../db/queries/products/01-getAllProducts');
-const {getSizes} = require('../db/queries/products/02-getSizes');
+const {getCategories} = require('../db/queries/products/02-getCategories');
+const {getStyles} = require('../db/queries/products/03-getStyles');
+const {getColors} = require('../db/queries/products/04-getColors');
+const {getSizes} = require('../db/queries/products/05-getSizes');
+const {getValidSizes, getAvailableSizes} = require('../db/queries/products/06-getValidSizes');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
 
     const f1 = getAllProducts(db);
-    const f2 = getSizes(db);
+    const f2 = getCategories(db);
+    const f3 = getStyles(db);
+    const f4 = getColors(db);
+    const f5 = getSizes(db);
+    const f6 = getAvailableSizes(db);
 
-    Promise.all([f1, f2])
-    .then(([r1, r2]) => {
+    Promise.all([f1, f2, f3, f4, f5, f6])
+    .then(([r1, r2, r3, r4, r5, r6]) => {
       const products = r1.rows;
-      const sizes = r2.rows;
-      res.json({ products, sizes });
+      const categories = r2.rows;
+      const styles = r3.rows;
+      const colors = r4.rows;
+      const sizes = r5.rows;
+      const availableSizes = r6.rows;
+      res.json({ products, categories, styles, colors, sizes, availableSizes });
       return;
+      // res
+      // .status(500)
+      // .json({ error: 'err.message' });
     })
     .catch(err => {
       res
