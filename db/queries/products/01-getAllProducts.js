@@ -1,7 +1,10 @@
 const getAllProducts = (db) => {
   return db.query(`
-    SELECT products.id as id, categories.cat as category, styles.style as style,
-      colors.color as color, products.name as name,
+    SELECT products.id as id, products.sku as sku,
+      categories.id as category_id, categories.cat as category,
+      styles.id as style_id, styles.style as style,
+      colors.id as color_id, colors.color as color,
+      products.name as name,
       products.description as description, products.image_1 as image1,
       products.image_2 as image2, products.image_3 as image3,
       products.price as price, products.display_feature as disp
@@ -14,5 +17,3 @@ const getAllProducts = (db) => {
 }
 
 module.exports = { getAllProducts };
-
-// id, category_id, style_id, color_id, size_id, name, description, image_url, price

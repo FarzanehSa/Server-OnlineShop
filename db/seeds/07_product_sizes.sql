@@ -16,42 +16,22 @@ INSERT INTO inventory_barcodes (product_id, size_id, barcode)
   VALUES (1, 7, 1007);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
   VALUES (1, 8, 1008);
-INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (1, 9, 1009);
-INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (1, 10, 1010);
-INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (1, 11, 1011);
-INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (1, 12, 1012);
-INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (1, 13, 1013);
 
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 1, 1021);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 2, 1022);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 3, 1023);
+  VALUES (2, 1, 1011);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 4, 1024);
+  VALUES (2, 2, 1012);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 5, 1025);
+  VALUES (2, 3, 1013);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 6, 1026);
+  VALUES (2, 4, 1014);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 7, 1027);
+  VALUES (2, 5, 1015);
 INSERT INTO inventory_barcodes (product_id, size_id, barcode)
-  VALUES (2, 8, 1028);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 9, 1029);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 10, 1030);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 11, 1031);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 12, 1032);
--- INSERT INTO inventory_barcodes (product_id, size_id, barcode)
---   VALUES (2, 13, 1033);
+  VALUES (2, 6, 1016);
+INSERT INTO inventory_barcodes (product_id, size_id, barcode)
+  VALUES (2, 7, 1017);
+INSERT INTO inventory_barcodes (product_id, size_id, barcode)
+  VALUES (2, 8, 1018);
+
 
 

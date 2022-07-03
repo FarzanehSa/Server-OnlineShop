@@ -13,6 +13,9 @@ const {getCategories} = require('../db/queries/products/02-getCategories');
 const {getStyles} = require('../db/queries/products/03-getStyles');
 const {getColors} = require('../db/queries/products/04-getColors');
 const {getSizes} = require('../db/queries/products/05-getSizes');
+const {getProductBySku} = require('../db/queries/products/07-getProductBySku');
+const {addNewProduct} = require('../db/queries/products/08-addNewProduct');
+const {updateById} = require('../db/queries/products/09-updateById');
 const {getValidSizes, getAvailableSizes} = require('../db/queries/products/06-getValidSizes');
 
 module.exports = (db) => {
@@ -47,12 +50,49 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    const  { id, category_id, style_id, color_id, size_id, name, description, image_url, price } = req.body;
-    console.log('data',{ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
-    res.status(201).send({ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
+    const newProduct = (req.body.product);
+    const {sku, category_id, style_id, color_id,
+      name, description, image1, image2, image3, price, disp} = newProduct;
+    console.log(newProduct);
+    getProductBySku(db, sku)
+    .then(data => {
+      if (data.rows[0]) {
+        res.json({ errCode: 1001, errMsg: 'duplicate sku', sku: `${sku}` })
+        return
+      } else {
+        addNewProduct(db, newProduct)
+        .then((data) => {
+          console.log('add done');
+          res.json({ ...newProduct })
+          return
+        })
+      }
+
+    })
+    // const  { id, category_id, style_id, color_id, size_id, name, description, image_url, price } = req.body;
+    // console.log('data',{ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
+    // res.status(201).send({ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
   });
 
+  router.put("/:id", (req, res) => {
+    const { product } = req.body;
+    const id = req.params.id;
 
+    console.log(product);
+    console.log(id);
+
+    updateById(db, id, product)
+    .then (data => {
+      res.json(data.rows[0])
+      return
+    })
+    .catch(err => {
+      console.log(err);
+      res
+      .status(500)
+      .json({ error: err.message });
+    });;
+  })
 
 
 
