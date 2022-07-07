@@ -16,6 +16,7 @@ const {getSizes} = require('../db/queries/products/05-getSizes');
 const {getProductBySku} = require('../db/queries/products/07-getProductBySku');
 const {addNewProduct} = require('../db/queries/products/08-addNewProduct');
 const {updateById} = require('../db/queries/products/09-updateById');
+const {getProductById} = require('../db/queries/products/10-getProductById');
 const {getValidSizes, getAvailableSizes} = require('../db/queries/products/06-getValidSizes');
 
 module.exports = (db) => {
@@ -38,9 +39,23 @@ module.exports = (db) => {
       const availableSizes = r6.rows;
       res.json({ products, categories, styles, colors, sizes, availableSizes });
       return;
-      // res
-      // .status(500)
-      // .json({ error: 'err.message' });
+    })
+    .catch(err => {
+      res
+      .status(500)
+      .json({ error: err.message });
+    });;
+  });
+
+  router.get("/:id", (req, res) => {
+    const curId = req.params.id;
+    const f1 = getProductById(db, curId);
+
+    Promise.all([f1])
+    .then(([r1]) => {
+      const product = r1.rows[0];
+      res.json({ product });
+      return;
     })
     .catch(err => {
       res

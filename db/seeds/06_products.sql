@@ -5,7 +5,7 @@ INSERT INTO products
     name, description, image_1, image_2, image_3, price, display_feature)
    VALUES (100, 1, 2, 2, 'Field Trekker Hiking Boots',
     'These men''s hikers were designed for comfort with a cushiony EVA-blend foam midsole and lightweight OrthoLite® footbed. Added features include a convenient speed-lacing system and eco-conscious materials',
-    'https://i.postimg.cc/SjFYMT6Z/p-01.png',
+    '/logo192.png',
     'https://i.postimg.cc/mkFFhfHz/p-02.png',
     'https://i.postimg.cc/qRF3kMzH/p-03.png',
     14000, true );
