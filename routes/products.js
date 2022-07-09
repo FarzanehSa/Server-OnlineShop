@@ -29,15 +29,14 @@ module.exports = (db) => {
     const f5 = getSizes(db);
     const f6 = getAvailableSizes(db);
 
-    Promise.all([f1, f2, f3, f4, f5, f6])
-    .then(([r1, r2, r3, r4, r5, r6]) => {
+    Promise.all([f1, f2, f3, f4, f5])
+    .then(([r1, r2, r3, r4, r5]) => {
       const products = r1.rows;
       const categories = r2.rows;
       const styles = r3.rows;
       const colors = r4.rows;
       const sizes = r5.rows;
-      const availableSizes = r6.rows;
-      res.json({ products, categories, styles, colors, sizes, availableSizes });
+      res.json({ products, categories, styles, colors, sizes });
       return;
     })
     .catch(err => {
@@ -75,29 +74,37 @@ module.exports = (db) => {
         res.json({ errCode: 1001, errMsg: 'duplicate sku', sku: `${sku}` })
         return
       } else {
-        addNewProduct(db, newProduct)
-        .then((data) => {
-          console.log('add done');
-          res.json({ ...newProduct })
+        return addNewProduct(db, newProduct)
+        .then(item => {
+          console.log('Add done');
+          return getProductById(db, item.rows[0].id)
+        })
+        .then(data => {
+          console.log(data.rows[0]);
+          res.json(data.rows[0])
           return
         })
       }
-
     })
-    // const  { id, category_id, style_id, color_id, size_id, name, description, image_url, price } = req.body;
-    // console.log('data',{ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
-    // res.status(201).send({ id, category_id, style_id, color_id, size_id, name, description, image_url, price });
+    .catch(err => {
+      console.log(err);
+      res
+      .status(500)
+      .json({ error: err.message });
+    });
   });
 
   router.put("/:id", (req, res) => {
     const { product } = req.body;
     const id = req.params.id;
 
-    console.log(product);
-    console.log(id);
-
     updateById(db, id, product)
-    .then (data => {
+    .then (() => {
+      console.log('Edit done');
+      return getProductById(db, id)
+    })
+    .then(data => {
+      console.log(data.rows[0]);
       res.json(data.rows[0])
       return
     })

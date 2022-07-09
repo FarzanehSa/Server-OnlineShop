@@ -11,10 +11,10 @@ CREATE TABLE products (
 
   name VARCHAR(255) NOT NULL,
   description TEXT,
-  image_1 VARCHAR(512),
-  image_2 VARCHAR(512),
-  image_3 VARCHAR(512),
+  image1 VARCHAR(512),
+  image2 VARCHAR(512),
+  image3 VARCHAR(512),
   price INTEGER  NOT NULL DEFAULT 0,
-  display_feature BOOLEAN  NOT NULL DEFAULT false
+  disp BOOLEAN  NOT NULL DEFAULT false
 );
 

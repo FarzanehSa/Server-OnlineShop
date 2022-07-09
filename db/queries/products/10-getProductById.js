@@ -1,10 +1,13 @@
 const getProductById = (db, id) => {
   return db.query(`
-  SELECT products.id as id, products.sku as sku, categories.cat as category, styles.style as style,
-  colors.color as color, products.name as name,
-  products.description as description, products.image_1 as image1,
-  products.image_2 as image2, products.image_3 as image3,
-  products.price as price, products.display_feature as disp
+  SELECT products.id as id, products.sku as sku,
+    categories.id as category_id, categories.cat as category,
+    styles.id as style_id, styles.style as style,
+    colors.id as color_id, colors.color as color,
+    products.name as name,
+    products.description as description, products.image1 as image1,
+    products.image2 as image2, products.image3 as image3,
+    products.price as price, products.disp as disp
   FROM products
   JOIN categories On category_id = categories.id
   JOIN styles On style_id = styles.id
